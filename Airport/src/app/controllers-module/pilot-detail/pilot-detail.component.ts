@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { Pilot } from '../../services-module/Models/pilot';
+import { PilotService } from '../../services-module/pilot.service';
 
 @Component({
   selector: 'app-pilot-detail',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PilotDetailComponent implements OnInit {
 
-  constructor() { }
+  @Input() pilot: Pilot;
+
+  constructor(private route: ActivatedRoute,
+    private pilotService: PilotService,
+    private location: Location) { }
 
   ngOnInit() {
+    this.getHero();
+  }
+
+  getHero(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.pilotService.getPilot(id)
+      .subscribe(hero => this.pilot = hero);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }

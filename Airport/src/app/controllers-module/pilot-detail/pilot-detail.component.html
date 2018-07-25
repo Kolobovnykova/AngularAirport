@@ -1,3 +1,26 @@
-<p>
-  pilot-detail works!
-</p>
+<div *ngIf="pilot">
+
+  <h2>{{pilot.firstName | uppercase}} Details</h2>
+  <div>
+    <span>id: </span>{{pilot.id}}</div>
+  <div>
+    <label>
+      first name:
+      <input [(ngModel)]="pilot.firstName" placeholder="first name">
+    </label>
+    <label>
+      last name:
+      <input [(ngModel)]="pilot.lastName" placeholder="last name">
+    </label>
+    <label>
+      birth date:
+      <input [(ngModel)]="pilot.dateOfBirth" placeholder="birth date">
+    </label>
+    <label>
+      experience:
+      <input [(ngModel)]="pilot.experience" placeholder="experience">
+    </label>
+  </div>
+  <button>Save</button>
+  <button (click)="goBack()">go back</button>
+</div>
