@@ -18,13 +18,13 @@ export class PilotDetailComponent implements OnInit {
     private location: Location) { }
 
   ngOnInit() {
-    this.getHero();
+    this.getPilot();
   }
 
-  getHero(): void {
+  getPilot(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.pilotService.getPilot(id)
-      .subscribe(hero => this.pilot = hero);
+      .subscribe(pilot => this.pilot = pilot);
   }
 
   goBack(): void {
