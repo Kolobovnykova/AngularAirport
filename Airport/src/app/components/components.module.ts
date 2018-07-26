@@ -4,13 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { PilotListComponent } from './pilot-list/pilot-list.component';
 import { PilotDetailComponent } from './pilot-detail/pilot-detail.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [HomeComponent, PilotListComponent, PilotDetailComponent]
 })

@@ -1,10 +1,67 @@
 <h2>Pilots</h2>
-<button (click)="goBack()">go back</button>
-<button (click)="add()">add</button>
+<button class="btn btn-secondary" (click)="goBack()">go back</button>
+<button class="btn btn-primary" (click)="add()">add</button>
+
+
+  <div [hidden]="submitted">
+  <h1>Hero Form</h1>
+  <form>
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input type="text" class="form-control" id="firstName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input type="text" class="form-control" id="lastName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Date of birth</label>
+      <input type="date" class="form-control" id="dateOfBirth">
+    </div>
+
+    <div class="form-group">
+      <label for="experience">Experience</label>
+      <input type="number" class="form-control" id="experience" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>
+
+
+
+
+<table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Experience</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pilot of pilots">
+        <th scope="row">{{pilot.id}}</th>
+        <td><a routerLink="/pilots/{{pilot.id}}">{{pilot.firstName}}</a></td>
+        <td><a routerLink="/pilots/{{pilot.id}}">{{pilot.lastName}}</a></td>
+        <td>{{pilot.dateOfBirth | date: shortDate }}</td>
+        <td>{{pilot.experience}}</td>
+        <td><button class="btn btn-danger" (click)="delete(pilot)">X</button></td>
+      </tr>   
+    </tbody>
+  </table>
+
+<!-- 
 <ul>
   <li *ngFor="let pilot of pilots">
-    <a routerLink="/pilots/{{pilot.id}}">
-      {{pilot.id}} {{pilot.firstName}} {{pilot.lastName}} {{pilot.experience}} {{pilot.dateOfBirth | date: shortDate }}  </a>
-      <button (click)="delete(pilot)">delete</button>
-    </li>
-</ul>
+    
+      <a routerLink="/pilots/{{pilot.id}}"></a>
+    <button (click)="delete(pilot)">delete</button>
+  </li>
+</ul> -->

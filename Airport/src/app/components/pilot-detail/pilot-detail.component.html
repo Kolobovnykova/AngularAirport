@@ -1,3 +1,36 @@
+<!-- <div class="container">
+  <h5>Pilot Information</h5>
+  <hr>
+  <div class="form-group">
+    <label>Id</label>
+    <div class="form-control">
+      {{pilot.id}}
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Firstname</label>
+    <input class="form-control" name="firstName" [(ngModel)]="pilot.firstName" />
+  </div>
+  <div class="form-group">
+    <label>Lastname</label>
+    <input class="form-control" name="lastName" [(ngModel)]="pilot.lastName" />
+  </div>
+  <div class="form-group">
+    <label>Birthdate</label>
+    <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="pilot.dateOfBirth" />
+  </div>
+  <div class="form-group">
+    <label>Experience</label>
+    <input type="number" class="form-control" name="experience" [(ngModel)]="pilot.experience" />
+  </div>
+
+  <div class="btn-box">
+    <button class="btn btn-primary" (click)="update(pilot.id)">Update</button>
+    <button class="btn btn-danger" (click)="delete(pilot.id)">Delete</button>
+  </div>
+  <button class="btn btn-primary" (click)="goBack()">go back</button>
+</div> -->
+
 <div *ngIf="pilot">
 
   <h2>{{pilot.firstName | uppercase}} Details</h2>
