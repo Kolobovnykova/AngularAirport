@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Pilot } from '../../services/Models/pilot';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Pilot } from '../../services-module/Models/pilot';
-import { PilotService } from '../../services-module/pilot.service';
+import { PilotService } from '../../services/pilot.service';
 
 @Component({
   selector: 'app-pilot-detail',

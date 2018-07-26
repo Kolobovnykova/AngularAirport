@@ -5,23 +5,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { PilotListComponent } from './controllers-module/pilot-list/pilot-list.component';
-import { PilotDetailComponent } from './controllers-module/pilot-detail/pilot-detail.component';
-import { HomeComponent } from './controllers-module/home/home.component';
+import { ComponentsModule } from './components/components.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    PilotListComponent,
-    PilotDetailComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

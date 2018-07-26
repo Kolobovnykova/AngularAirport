@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PILOTS } from './mock-pilots';
+import { PILOTS } from '../services/mock-pilots';
 import { Pilot } from './Models/pilot';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PilotService {
   // private url = 'api/pilots';  // URL to web api
-  private url = 'http://localhost:52063/api/pilots/';
+  private url = 'http://localhost:52550/api/pilots/';
 
   constructor(private http: HttpClient) { }
 

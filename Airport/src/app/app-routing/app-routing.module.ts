@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { PilotListComponent } from '../controllers-module/pilot-list/pilot-list.component';
-import { PilotDetailComponent } from '../controllers-module/pilot-detail/pilot-detail.component';
-import { HomeComponent } from '../controllers-module/home/home.component';
+import { HomeComponent } from '../components/home/home.component';
+import { PilotDetailComponent } from '../components/pilot-detail/pilot-detail.component';
+import { PilotListComponent } from '../components/pilot-list/pilot-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
