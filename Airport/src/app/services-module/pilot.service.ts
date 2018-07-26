@@ -18,14 +18,18 @@ export class PilotService {
   //   return of(PILOTS);
   // }
 
-  getPilots (): Observable<Pilot[]> {
+  getPilots(): Observable<Pilot[]> {
     return this.http.get<Pilot[]>(this.url);
     // .pipe(
     //   catchError(this.handleError('getHeroes', []))
     // );
   }
 
+  // getPilot(id: number): Observable<Pilot> {
+  //   return of(PILOTS.find(pilot => pilot.id === id));
+  // }
   getPilot(id: number): Observable<Pilot> {
-    return of(PILOTS.find(pilot => pilot.id === id));
+    let idUrl = `${this.url}${id}`;
+    return this.http.get<Pilot>(idUrl)
   }
 }
