@@ -23,7 +23,7 @@ export class PilotDetailComponent implements OnInit {
 
   getPilot(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.pilotService.getPilot(id)
+    this.pilotService.getById(id)
       .subscribe(pilot => this.pilot = pilot);
   }
 
@@ -31,4 +31,9 @@ export class PilotDetailComponent implements OnInit {
     this.location.back();
   }
 
+  save(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.pilotService.update(id, this.pilot)
+      .subscribe(() => this.goBack());
+  }
 }

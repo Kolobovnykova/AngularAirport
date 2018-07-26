@@ -1,8 +1,8 @@
 <h2>Pilots</h2>
+<button (click)="goBack()">go back</button>
 <ul>
   <li *ngFor="let pilot of pilots">
     <a routerLink="/pilots/{{pilot.id}}">
       {{pilot.id}} {{pilot.firstName}} {{pilot.lastName}} {{pilot.experience}}    </a>
   </li>
 </ul>
-<button (click)="goBack()">go back</button>
