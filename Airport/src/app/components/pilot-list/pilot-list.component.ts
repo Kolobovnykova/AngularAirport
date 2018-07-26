@@ -15,12 +15,21 @@ export class PilotListComponent implements OnInit {
     pilots: Pilot[];
 
   ngOnInit() {
-    this.getPilots();
+    this.getAll();
   }
 
-  getPilots(): void {
+  getAll(): void {
     this.pilotService.getAll()
       .subscribe(pilots => this.pilots = pilots);
+  }
+
+  add(): void {
+    
+  }
+
+  delete(pilot: Pilot): void {
+    this.pilotService.delete(pilot.id)
+    .subscribe(this.pilots = this.pilots.splice(pilot.id, 1));
   }
 
   goBack(): void {

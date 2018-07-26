@@ -20,20 +20,20 @@ export class PilotService {
 
   getById(id: number): Observable<Pilot> {
     let idUrl = `${this.url}${id}`;
-    return this.http.get<Pilot>(idUrl)
+    return this.http.get<Pilot>(idUrl);
   }
 
-  create(pilot: Pilot) {
-    this.http.post<Pilot>(this.url, pilot).subscribe();
+  create(pilot: Pilot): Observable<Pilot> {
+    return this.http.post<Pilot>(this.url, pilot, httpOptions);
   }
 
-  update(id: number, pilot: Pilot): Observable<any> {
+  update(id: number, pilot: Pilot): Observable<Pilot> {
     let idUrl = `${this.url}${id}`;
-    return this.http.put(idUrl, pilot, httpOptions);
+    return this.http.put<Pilot>(idUrl, pilot, httpOptions);
   }
 
-  delete(id: number) {
+  delete(id: number): Observable<Pilot> {
     let idUrl = `${this.url}${id}`;
-    this.http.delete(idUrl).subscribe();
+    return this.http.delete<Pilot>(idUrl, httpOptions);
   }
 }

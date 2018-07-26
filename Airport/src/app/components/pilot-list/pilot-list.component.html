@@ -1,8 +1,10 @@
 <h2>Pilots</h2>
 <button (click)="goBack()">go back</button>
+<button (click)="add()">add</button>
 <ul>
   <li *ngFor="let pilot of pilots">
     <a routerLink="/pilots/{{pilot.id}}">
-      {{pilot.id}} {{pilot.firstName}} {{pilot.lastName}} {{pilot.experience}}    </a>
-  </li>
+      {{pilot.id}} {{pilot.firstName}} {{pilot.lastName}} {{pilot.experience}} {{pilot.dateOfBirth | date: shortDate }}  </a>
+      <button (click)="delete(pilot)">delete</button>
+    </li>
 </ul>

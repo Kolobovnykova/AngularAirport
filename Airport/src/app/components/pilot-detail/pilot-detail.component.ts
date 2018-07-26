@@ -12,18 +12,19 @@ import { PilotService } from '../../services/pilot.service';
 export class PilotDetailComponent implements OnInit {
 
   @Input() pilot: Pilot;
+  private id: number;
 
   constructor(private route: ActivatedRoute,
     private pilotService: PilotService,
     private location: Location) { }
 
   ngOnInit() {
-    this.getPilot();
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.getById();
   }
 
-  getPilot(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.pilotService.getById(id)
+  getById(): void {
+    this.pilotService.getById(this.id)
       .subscribe(pilot => this.pilot = pilot);
   }
 
@@ -32,8 +33,12 @@ export class PilotDetailComponent implements OnInit {
   }
 
   save(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.pilotService.update(id, this.pilot)
+    this.pilotService.update(this.id, this.pilot)
       .subscribe(() => this.goBack());
+  }
+
+  delete() {
+    this.pilotService.delete(this.id)
+    .subscribe(() => this.goBack());
   }
 }
