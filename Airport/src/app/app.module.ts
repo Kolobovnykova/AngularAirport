@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServicesModule } from './services/services.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

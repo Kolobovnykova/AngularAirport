@@ -1,3 +1,37 @@
-<p>
-  stewardess-list works!
-</p>
+<h2 class="text-center">Stewardesses</h2>
+<button class="btn btn-secondary" (click)="goBack()">Back</button>
+<a class="btn btn-primary" href="/stewardesses/0">Add</a>
+
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Crew Id</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stewardess of stewardesses">
+      <th scope="row">{{stewardess.id}}</th>
+      <td>
+        <a routerLink="/stewardesses/{{stewardess.id}}">{{stewardess.firstName}}</a>
+      </td>
+      <td>
+        <a routerLink="/stewardesses/{{stewardess.id}}">{{stewardess.lastName}}</a>
+      </td>
+      <td>{{stewardess.dateOfBirth | date: shortDate }}</td>
+      <td>{{stewardess.crewId}}</td>
+      <td>
+        <button class="btn btn-default" routerLink="/stewardesses/{{stewardess.id}}">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-default" (click)="delete(stewardess)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

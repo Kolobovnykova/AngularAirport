@@ -20,6 +20,7 @@ import { PlaneDetailComponent } from './plane-detail/plane-detail.component';
 import { PlanetypeListComponent } from './planetype-list/planetype-list.component';
 import { PlanetypeDetailComponent } from './planetype-detail/planetype-detail.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ServicesModule } from '../services/services.module';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServicesModule
   ],
   declarations: [PilotListComponent, PilotDetailComponent, CrewListComponent, CrewDetailComponent, StewardessDetailComponent, StewardessListComponent, FlightListComponent, FlightDetailComponent, TicketListComponent, TicketDetailComponent, DepartureListComponent, DepartureDetailComponent, PlaneListComponent, PlaneDetailComponent, PlanetypeListComponent, PlanetypeDetailComponent]
 })

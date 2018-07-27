@@ -37,10 +37,6 @@ export class PilotListComponent implements OnInit {
         (pilot) => pilot.id !== idToDelete));
   }
 
-  goToDetails(){
-    this.router.navigateByUrl('/user');
-  }
-
   goBack(): void {
     this.location.back();
   }
