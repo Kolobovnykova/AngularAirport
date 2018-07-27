@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="form-group col-md-6">
-        <h2 *ngIf="crew.id" class="text-center">Crew {{crew.id }} Details</h2>
+        <h2 *ngIf="crew.id" class="text-center">Crew {{crew.id}} Details</h2>
         <h2 *ngIf="!crew.id" class="text-center">New Crew</h2>
       </div>
     </div>
@@ -41,7 +41,7 @@
         <label>Stewardesses:</label>
         <ul>
           <li *ngFor="let stew of crew.stewardesses; index as i; trackBy: trackByFn">
-            <button class="btn" (click)="removeStew(stew)">{{stew.firstName}}</button>
+            <button class="btn">{{stew.firstName}} {{stew.lastName}}</button>
           </li>
         </ul>
       </div>
@@ -49,7 +49,7 @@
         <label>Available Stewardesses:</label>
         <ul>
           <li *ngFor="let stew of stewardesses; index as i; trackBy: trackByFn">
-            <button class="btn btn-secondary" (click)="addStew(stew)">{{stew.firstName}}</button>
+            <button class="btn btn-secondary" (click)="addStew(stew)">{{stew.firstName}} {{stew.lastName}}</button>
           </li>
         </ul>
       </div>

@@ -54,17 +54,22 @@ export class CrewDetailComponent implements OnInit {
       this.stewardessService.getAll().subscribe(stews => this.stewardesses = stews);
     }
 
-    this.form = this.formbuilder.group(this.groupConfig);
+    // this.form = this.formbuilder.group(this.groupConfig);
   }
 
   getById(id: number): void {
     this.crewService.getById(this.id)
       .subscribe((crew) => {
         this.crew = crew;
+        let dp = new DatePipe("en-US");
+        let p = 'y-MM-dd';
+        let dtr = dp.transform(this.crew.pilot.dateOfBirth, p);
         this.groupConfig = {
           id: crew.id,
-          pilot: this.crew.pilot,
-          stewardesses: this.crew.stewardesses
+          firstName: this.crew.pilot.firstName,
+          lastName: this.crew.pilot.lastName,
+          dateOfBirth: dtr,
+          experience: [this.crew.pilot.experience, Validators.max(50)]
         };
         this.form = this.formbuilder.group(this.groupConfig);
 
@@ -86,16 +91,17 @@ export class CrewDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+    const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
+    this.crew.pilot = pilot;
+    this.crew.stewardesses.forEach(function(item, i, arr) {
+      item.id = 0;
+    });
+    this.crew.pilot.id = 0;
+
     if (this.id) {
       this.crewService.update(this.id, this.crew).subscribe();
     }
     else {
-      const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
-      this.crew.pilot = pilot;
-      this.crew.stewardesses.forEach(function(item, i, arr) {
-        item.id = 0;
-      });
       this.crewService.create(this.crew).subscribe(() => this.goBack());
     }
   }
@@ -107,7 +113,7 @@ export class CrewDetailComponent implements OnInit {
 
     // add stew to another crew
     stew.crewId = this.crew.id;
-    this.stewardessService.update(stew.id, stew).subscribe();
+   // this.stewardessService.update(stew.id, stew).subscribe();
     this.crew.stewardesses.push(stew);
   }
 }
