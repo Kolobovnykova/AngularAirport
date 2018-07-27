@@ -74,11 +74,6 @@ export class PilotDetailComponent implements OnInit {
     this.location.back();
   }
 
-  // save(): void {
-  //   this.pilotService.update(this.id, this.pilot)
-  //     .subscribe(() => this.goBack());
-  // }
-
   delete() {
     this.pilotService.delete(this.id)
       .subscribe(() => this.goBack());
