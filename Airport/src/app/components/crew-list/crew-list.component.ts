@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Pilot } from '../../services/Models/pilot';
+import { Router } from '@angular/router';
+import { CrewService } from '../../services/crew.service';
+import { Crew } from '../../services/Models/crew';
 
 @Component({
   selector: 'app-crew-list',
@@ -7,9 +12,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrewListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private crewService: CrewService,
+    private location: Location
+  ) { }
+  private router: Router
+  crews: Crew[];
 
   ngOnInit() {
+    this.getAll();
   }
 
+  getAll(): void {
+    this.crewService.getAll()
+      .subscribe(crews => this.crews = crews);
+  }
+
+  add(): void {
+    this.location.go("/pilots/0")
+  }
+
+  delete(crew: Crew): void {
+    const idToDelete = crew.id;
+    this.crewService.delete(idToDelete)
+      .subscribe((crewToDelete) => this.crews = this.crews.filter(
+        (pilot) => pilot.id !== idToDelete));
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
