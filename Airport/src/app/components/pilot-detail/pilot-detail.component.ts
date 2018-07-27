@@ -29,7 +29,7 @@ export class PilotDetailComponent implements OnInit {
   ngOnInit() {
     this.groupConfig = {
       id: 0,
-      firstName: ["1", Validators.maxLength(50)],
+      firstName: ["", Validators.maxLength(50)],
       lastName: ["", Validators.maxLength(50)],
       dateOfBirth: undefined,
       experience: [0, Validators.max(50)]
