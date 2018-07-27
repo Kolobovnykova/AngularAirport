@@ -8,7 +8,7 @@ import { Flight } from './Models/flight';
   providedIn: 'root'
 })
 export class FlightService {
-  private url = localhost + 'api/planetypes/';
+  private url = localhost + 'api/flights/';
 
   constructor(private http: HttpClient) { }
 

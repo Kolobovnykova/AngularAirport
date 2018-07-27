@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./pilot-list.component.css']
 })
 export class PilotListComponent implements OnInit {
+
   constructor(
     private pilotService: PilotService,
     private location: Location
@@ -24,10 +25,6 @@ export class PilotListComponent implements OnInit {
   getAll(): void {
     this.pilotService.getAll()
       .subscribe(pilots => this.pilots = pilots);
-  }
-
-  add(): void {
-    this.location.go("/pilots/0")
   }
 
   delete(pilot: Pilot): void {

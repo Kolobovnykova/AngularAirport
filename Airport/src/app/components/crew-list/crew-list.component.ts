@@ -28,10 +28,6 @@ export class CrewListComponent implements OnInit {
       .subscribe(crews => this.crews = crews);
   }
 
-  add(): void {
-    this.location.go("/pilots/0")
-  }
-
   delete(crew: Crew): void {
     const idToDelete = crew.id;
     this.crewService.delete(idToDelete)

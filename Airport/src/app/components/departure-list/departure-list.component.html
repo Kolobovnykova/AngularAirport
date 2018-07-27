@@ -1,3 +1,40 @@
-<p>
-  departure-list works!
-</p>
+<h2 class="text-center">Departures</h2>
+<div class="row justify-content-between">
+  <button class="btn btn-secondary" (click)="goBack()">Back</button>
+  <a class="btn btn-primary" href="/departures/0">Add</a>
+</div>
+<table class="table table-striped table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Flight Id</th>
+      <th scope="col">Crew Id</th>
+      <th scope="col">Date of Departure</th>
+      <th scope="col">Plane Id</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let departure of departures">
+      <th scope="row">{{departure.id}}</th>
+      <td>
+        <a routerLink="/flights/{{departure.flightId}}">{{departure.flight.id}}</a>
+      </td>
+      <td>
+        <a routerLink="/crews/{{departure.crewId}}">{{departure.crew.id}}</a>
+      </td>
+      <td>{{departure.dateOfDeparture | date: shortDate }}</td>
+      <td>
+        <a routerLink="/planes/{{departure.planeId}}">{{departure.plane.id}}</a>
+      </td>
+      <td>
+        <button class="btn btn-default" routerLink="/departures/{{departure.id}}">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-default" (click)="delete(departure)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

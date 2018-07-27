@@ -8,7 +8,7 @@ import { Departure } from './Models/departure';
   providedIn: 'root'
 })
 export class DepartureService {
-  private url = localhost + 'api/planetypes/';
+  private url = localhost + 'api/departures/';
 
   constructor(private http: HttpClient) { }
 

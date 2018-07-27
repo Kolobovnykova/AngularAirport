@@ -26,10 +26,6 @@ export class StewardessListComponent implements OnInit {
       .subscribe(stewardesses => this.stewardesses = stewardesses);
   }
 
-  add(): void {
-    this.location.go("/stewardesses/0")
-  }
-
   delete(pilot: Stewardess): void {
     const idToDelete = pilot.id;
     this.stewardessService.delete(idToDelete)
