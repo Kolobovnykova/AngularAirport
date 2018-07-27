@@ -1,3 +1,53 @@
-<p>
-  crew-detail works!
-</p>
+<div *ngIf="crew">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="form-group col-md-6">
+        <h2 *ngIf="crew.id" class="text-center">Crew {{crew.id }} Details</h2>
+        <h2 *ngIf="!crew.id" class="text-center">New Crew</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="id">Id</label>
+        <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="firstName">Pilot</label>
+
+
+        <input id="firstName" [formControl]="form.get('pilot')" type="text" placeholder="pilot" class="form-control" required/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3 list">
+        <label>Stewardesses:</label>
+        <ul>
+          <li *ngFor="let stew of crew.stewardesses; index as i; trackBy: trackByFn">
+            <button class="btn" (click)="removeStew(stew)">{{stew.firstName}}</button>
+          </li>
+        </ul>
+      </div>
+      <div class="form-group col-md-3 list">
+        <label>Available Stewardesses:</label>
+        <ul>
+          <li *ngFor="let stew of stewardesses; index as i; trackBy: trackByFn">
+            <button class="btn btn-secondary" (click)="addStew(stew)">{{stew.firstName}}</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <div class="btn-box">
+          <button *ngIf="crew.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
+          <button *ngIf="!crew.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
+          <button *ngIf="crew.id" class="btn btn-danger" (click)="delete(crew)">Delete</button>
+          <button class="btn btn-secondary" (click)="goBack()">Back</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

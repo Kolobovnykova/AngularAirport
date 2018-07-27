@@ -3,9 +3,8 @@ import { Pilot } from '../../services/Models/pilot';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PilotService } from '../../services/pilot.service';
-import { ReactiveFormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common'
-
 
 @Component({
   selector: 'app-pilot-detail',
@@ -36,7 +35,6 @@ export class PilotDetailComponent implements OnInit {
       experience: [0, Validators.max(50)]
     }
     this.id = +this.route.snapshot.paramMap.get('id');
-
 
     if (this.id) {
       this.getById(this.id);
@@ -76,10 +74,10 @@ export class PilotDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
-    this.pilotService.update(this.id, this.pilot)
-      .subscribe(() => this.goBack());
-  }
+  // save(): void {
+  //   this.pilotService.update(this.id, this.pilot)
+  //     .subscribe(() => this.goBack());
+  // }
 
   delete() {
     this.pilotService.delete(this.id)

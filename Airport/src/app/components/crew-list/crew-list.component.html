@@ -6,8 +6,8 @@
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Pilot Id</th>
-      <th scope="col">Stewardesses Id</th>
+      <th scope="col">Pilot</th>
+      <th scope="col">Stewardesses</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -16,11 +16,11 @@
           class="clickable accordion-toggle">
       <th scope="row">{{crew.id}}</th>
       <td>
-        <a routerLink="/pilots/{{crew.pilot.id}}">{{crew.pilot.id}}</a>
+        <a routerLink="/pilots/{{crew.pilot.id}}">{{crew.pilot.firstName}} {{crew.pilot.lastName}}</a>
       </td>
       <td>
         <ul *ngFor="let stew of crew.stewardesses">
-          <a routerLink="/stewardesses/{{stew.id}}"><li>{{stew.id}}</li></a>
+          <a routerLink="/stewardesses/{{stew.id}}"><li>{{stew.firstName}} {{stew.lastName}}</li></a>
         </ul>
       </td>
       <td>
