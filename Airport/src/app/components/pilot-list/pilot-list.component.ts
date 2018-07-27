@@ -23,11 +23,12 @@ export class PilotListComponent implements OnInit {
       .subscribe(pilots => this.pilots = pilots);
   }
 
-  add(pilot: Pilot): void {
-    this.pilotService.create(pilot)
-      .subscribe(res => {
-        this.pilots.push(res);
-      }), err => console.log("Error Occured " + err);
+  add(): void {
+    this.location.go("/pilots/0")
+    // this.pilotService.create(pilot)
+    //   .subscribe(res => {
+    //     this.pilots.push(res);
+    //   }), err => console.log("Error Occured " + err);
   }
 
   delete(pilot: Pilot): void {

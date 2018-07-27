@@ -4,4 +4,4 @@ export const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-export const localhost = 'http://localhost:52062/';
+export const localhost = 'http://localhost:52550/';

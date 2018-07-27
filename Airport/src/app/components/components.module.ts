@@ -27,6 +27,6 @@ import { PlanetypeDetailComponent } from './planetype-detail/planetype-detail.co
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [HomeComponent, PilotListComponent, PilotDetailComponent, CrewListComponent, CrewDetailComponent, StewardessDetailComponent, StewardessListComponent, FlightListComponent, FlightDetailComponent, TicketListComponent, TicketDetailComponent, DepartureListComponent, DepartureDetailComponent, PlaneListComponent, PlaneDetailComponent, PlanetypeListComponent, PlanetypeDetailComponent]
+  declarations: [PilotListComponent, PilotDetailComponent, CrewListComponent, CrewDetailComponent, StewardessDetailComponent, StewardessListComponent, FlightListComponent, FlightDetailComponent, TicketListComponent, TicketDetailComponent, DepartureListComponent, DepartureDetailComponent, PlaneListComponent, PlaneDetailComponent, PlanetypeListComponent, PlanetypeDetailComponent]
 })
 export class ComponentsModule { }

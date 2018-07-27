@@ -1,6 +1,7 @@
 <h2>Pilots</h2>
 <button class="btn btn-secondary" (click)="goBack()">go back</button>
 <button class="btn btn-primary" (click)="add()">add</button>
+<a href="/pilots/0">add</a>
 
 
   <div [hidden]="submitted">
@@ -52,7 +53,8 @@
         <td><a routerLink="/pilots/{{pilot.id}}">{{pilot.lastName}}</a></td>
         <td>{{pilot.dateOfBirth | date: shortDate }}</td>
         <td>{{pilot.experience}}</td>
-        <td><button class="btn btn-danger" (click)="delete(pilot)">X</button></td>
+        <td><button class="btn btn-default" (click)="delete(pilot)">
+          <span class="glyphicon glyphicon-trash"></span></button></td>
       </tr>   
     </tbody>
   </table>

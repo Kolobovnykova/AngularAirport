@@ -3,7 +3,7 @@ import { Pilot } from '../../services/Models/pilot';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PilotService } from '../../services/pilot.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,24 +16,72 @@ export class PilotDetailComponent implements OnInit {
   @Input() pilot: Pilot;
   private id: number;
   title: string;
+  form: FormGroup;
+  groupConfig;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private pilotService: PilotService,
-    private location: Location) { }
+    private location: Location,
+    private formbuilder: FormBuilder
+  ) { }
 
   ngOnInit() {
+    this.groupConfig = {
+      id: 0,
+      firstName: ["1", Validators.maxLength(50)],
+      lastName: ["", Validators.maxLength(50)],
+      dateOfBirth: undefined,
+      experience: [0, Validators.max(50)]
+    }
     this.id = +this.route.snapshot.paramMap.get('id');
 
-    // this.title = this.id ? 'Update Pilot' : 'Create Pilot';
-    // if (!this.id) {
-    //   return;
-    // }
-    this.getById();
+    if (this.id) {
+     // debugger;
+      // this.getById();
+      // this.groupConfig = {
+      //   id: this.pilot.id,
+      //   firstName: [this.pilot.firstName, Validators.maxLength(50)],
+      //   lastName: [this.pilot.lastName, Validators.maxLength(50)],
+      //   dateOfBirth: this.pilot.dateOfBirth,
+      //   experience: [this.pilot.experience, Validators.maxLength(50)]
+      // }
+      this.pilotService.getById(this.id)
+      .subscribe((pilot) => {
+        this.pilot = pilot;
+        this.groupConfig = {
+          id: pilot.id,
+          firstName: [this.pilot.firstName, Validators.maxLength(50)],
+          lastName: [this.pilot.lastName, Validators.maxLength(50)],
+          dateOfBirth: this.pilot.dateOfBirth,
+          experience: [this.pilot.experience, Validators.max(50)]
+        };
+      });
+    } else {
+      this.pilot = {
+        id: 0,
+        firstName: "",
+        lastName: "",
+        dateOfBirth: undefined,
+        experience: 0
+      }
+    }
+
+    this.form = this.formbuilder.group(this.groupConfig);
   }
 
   getById(): void {
     this.pilotService.getById(this.id)
-      .subscribe(pilot => this.pilot = pilot);
+      .subscribe((pilot) => {
+        this.pilot = pilot;
+        this.groupConfig = {
+          id: this.pilot.id,
+          firstName: [this.pilot.firstName, Validators.maxLength(50)],
+          lastName: [this.pilot.lastName, Validators.maxLength(50)],
+          dateOfBirth: this.pilot.dateOfBirth,
+          experience: [this.pilot.experience, Validators.maxLength(50)]
+        };
+      });
   }
 
   goBack(): void {
