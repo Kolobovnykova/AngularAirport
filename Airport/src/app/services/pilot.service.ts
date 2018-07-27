@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PILOTS } from '../services/mock-pilots';
 import { Pilot } from './Models/pilot';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 import { httpOptions, localhost } from './constants';
 
 @Injectable({
