@@ -7,6 +7,7 @@ import { Crew } from '../../services/Models/crew';
 import { CrewService } from '../../services/crew.service';
 import { Stewardess } from '../../services/Models/stewardess';
 import { StewardessService } from '../../services/stewardess.service';
+import { Pilot } from '../../services/Models/pilot';
 
 @Component({
   selector: 'app-crew-detail',
@@ -30,11 +31,14 @@ export class CrewDetailComponent implements OnInit {
     private formbuilder: FormBuilder
   ) { }
 
+  
   ngOnInit() {
     this.groupConfig = {
       id: 0,
-      pilot: undefined,
-      stewardesses: undefined
+      firstName: ["", Validators.maxLength(50)],
+      lastName: ["", Validators.maxLength(50)],
+      dateOfBirth: undefined,
+      experience: [0, Validators.max(50)]
     }
     this.id = +this.route.snapshot.paramMap.get('id');
 
@@ -82,11 +86,16 @@ export class CrewDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    // const crew = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
+    debugger;
     if (this.id) {
       this.crewService.update(this.id, this.crew).subscribe();
     }
     else {
+      const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
+      this.crew.pilot = pilot;
+      this.crew.stewardesses.forEach(function(item, i, arr) {
+        item.id = 0;
+      });
       this.crewService.create(this.crew).subscribe(() => this.goBack());
     }
   }
