@@ -1,30 +1,35 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group col-md-6">
-    <h2 *ngIf="pilot.id" class="text-center">{{pilot.firstName | uppercase}} Details</h2>
-    <h2 *ngIf="!pilot.id">New Pilot</h2>
-  </div>
-  <div class="form-group col-md-6">
-    <label for="id">Id</label>
-    <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
-  </div>
-  <div class="form-group col-md-6">
-    <label for="firstName">First Name</label>
-    <input id="firstName" [formControl]="form.get('firstName')" type="text" placeholder="first name" class="form-control" required/>
-  </div>
-  <div class="form-group col-md-6">
-    <label for="firstName">Last Name</label>
-    <input [formControl]="form.get('lastName')" type="text" placeholder="last name" class="form-control" required />
-  </div>
-  <div class="form-group col-md-6">
-    <label for="firstName">Date of birth</label>
-    <input [formControl]="form.get('dateOfBirth')" type="date" placeholder="date of birth" class="form-control" required />
-  </div>
-  <div class="form-group col-md-6">
-    <label for="firstName">Experience</label>
-    <input [formControl]="form.get('experience')" type="number" placeholder="experience" class="form-control" required />
-  </div>
-  <div class="form-group col-md-6">
-    <button *ngIf="pilot.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
-    <button *ngIf="!pilot.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
-  </div>
-</form>
+<div *ngIf="pilot">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group col-md-6">
+      <h2 *ngIf="pilot.id" class="text-center">{{pilot.firstName | uppercase}} Details</h2>
+      <h2 *ngIf="!pilot.id" class="text-center">New Pilot</h2>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="id">Id</label>
+      <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="firstName">First Name</label>
+      <input id="firstName" [formControl]="form.get('firstName')" type="text" placeholder="first name" class="form-control" required/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="firstName">Last Name</label>
+      <input [formControl]="form.get('lastName')" type="text" placeholder="last name" class="form-control" required />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="firstName">Date of birth</label>
+      <input [formControl]="form.get('dateOfBirth')" type="date" placeholder="date of birth" class="form-control" required />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="firstName">Experience</label>
+      <input [formControl]="form.get('experience')" type="number" placeholder="experience" class="form-control" required />
+    </div>
+    <div class="form-group col-md-6">
+      <button *ngIf="pilot.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
+      <button *ngIf="!pilot.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
+      <button class="btn btn-danger" (click)="delete(pilot)">Delete</button>
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+    </div>
+  </form>
+</div>

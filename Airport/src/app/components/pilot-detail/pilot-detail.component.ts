@@ -39,33 +39,7 @@ export class PilotDetailComponent implements OnInit {
 
 
     if (this.id) {
-      //debugger;
-      // this.getById();
-      // this.groupConfig = {
-      //   id: this.pilot.id,
-      //   firstName: [this.pilot.firstName, Validators.maxLength(50)],
-      //   lastName: [this.pilot.lastName, Validators.maxLength(50)],
-      //   dateOfBirth: this.pilot.dateOfBirth,
-      //   experience: [this.pilot.experience, Validators.maxLength(50)]
-      // }
-      this.pilotService.getById(this.id)
-        .subscribe((pilot) => {
-          this.pilot = pilot;
-          let dp = new DatePipe("en-US");
-          let p = 'y-MM-dd';
-          let dtr = dp.transform(pilot.dateOfBirth, p);
-          this.groupConfig = {
-            id: pilot.id,
-            firstName: [this.pilot.firstName, Validators.maxLength(50)],
-            lastName: [this.pilot.lastName, Validators.maxLength(50)],
-            dateOfBirth: dtr,
-            experience: [this.pilot.experience, Validators.max(50)]
-          };
-          console.log(pilot);
-          this.form = this.formbuilder.group(this.groupConfig);
-
-        });
-      console.log(this.pilot);
+      this.getById(this.id);
     } else {
       this.pilot = {
         id: 0,
@@ -80,17 +54,21 @@ export class PilotDetailComponent implements OnInit {
     this.form = this.formbuilder.group(this.groupConfig);
   }
 
-  getById(): void {
+  getById(id: number): void {
     this.pilotService.getById(this.id)
       .subscribe((pilot) => {
         this.pilot = pilot;
+        let dp = new DatePipe("en-US");
+        let p = 'y-MM-dd';
+        let dtr = dp.transform(pilot.dateOfBirth, p);
         this.groupConfig = {
-          id: this.pilot.id,
+          id: pilot.id,
           firstName: [this.pilot.firstName, Validators.maxLength(50)],
           lastName: [this.pilot.lastName, Validators.maxLength(50)],
-          dateOfBirth: this.pilot.dateOfBirth,
-          experience: [this.pilot.experience, Validators.maxLength(50)]
+          dateOfBirth: dtr,
+          experience: [this.pilot.experience, Validators.max(50)]
         };
+        this.form = this.formbuilder.group(this.groupConfig);
       });
   }
 
@@ -99,16 +77,6 @@ export class PilotDetailComponent implements OnInit {
   }
 
   save(): void {
-    // let result,
-    //   pilotValue = this.form.value;
-    // if (pilotValue.id) {
-    //   result = this.pilotService.update(pilotValue.id, pilotValue);
-    // } else {
-    //   result = this.pilotService.create(pilotValue);
-    // }
-    // result.subscribe(() => this.goBack());
-    // // .subscribe(p => this.router.navigate(['pilots']));
-
     this.pilotService.update(this.id, this.pilot)
       .subscribe(() => this.goBack());
   }
@@ -121,10 +89,10 @@ export class PilotDetailComponent implements OnInit {
   onSubmit() {
     const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
     if (this.id) {
-      this.pilotService.update(this.id, this.form.value).subscribe();
+      this.pilotService.update(this.id, pilot).subscribe();
     }
     else {
-      this.pilotService.create(this.form.value).subscribe();
+      this.pilotService.create(pilot).subscribe(() => this.goBack());
     }
   }
 }
