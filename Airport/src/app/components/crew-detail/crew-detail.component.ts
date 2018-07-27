@@ -38,7 +38,7 @@ export class CrewDetailComponent implements OnInit {
       firstName: ["", Validators.maxLength(50)],
       lastName: ["", Validators.maxLength(50)],
       dateOfBirth: undefined,
-      experience: [0, Validators.max(50)]
+      experience: 0
     }
     this.id = +this.route.snapshot.paramMap.get('id');
 
@@ -53,8 +53,6 @@ export class CrewDetailComponent implements OnInit {
       this.form = this.formbuilder.group(this.groupConfig);
       this.stewardessService.getAll().subscribe(stews => this.stewardesses = stews);
     }
-
-    // this.form = this.formbuilder.group(this.groupConfig);
   }
 
   getById(id: number): void {
@@ -113,7 +111,6 @@ export class CrewDetailComponent implements OnInit {
 
     // add stew to another crew
     stew.crewId = this.crew.id;
-   // this.stewardessService.update(stew.id, stew).subscribe();
     this.crew.stewardesses.push(stew);
   }
 }

@@ -32,7 +32,7 @@ export class StewardessDetailComponent implements OnInit {
       firstName: ["", Validators.maxLength(50)],
       lastName: ["", Validators.maxLength(50)],
       dateOfBirth: undefined,
-      crewId: 0
+      crewId: [0, Validators.min(1)]
     }
     this.id = +this.route.snapshot.paramMap.get('id');
 

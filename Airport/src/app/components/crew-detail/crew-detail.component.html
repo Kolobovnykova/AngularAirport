@@ -2,43 +2,68 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="form-group col-md-6">
-        <h2 *ngIf="crew.id" class="text-center">Crew {{crew.id}} Details</h2>
+      <div class="form-group col-md-6 offset-md-3">
+        <h2 *ngIf="crew.id" class="text-center">Crew details</h2>
         <h2 *ngIf="!crew.id" class="text-center">New Crew</h2>
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-6">
-        <label for="id">Id</label>
+      <div class="form-group col-md-6 offset-md-3">
+        <label for="id">Id:</label>
         <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
       </div>
     </div>
-    <div>
-        <h5>Pilot</h5>
+    <div class="row">
+      <div class="col-md-3 offset-md-3">
+        <h5>Pilot:</h5>
+      </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-3">
-            <label for="firstName">First Name</label>
-            <input id="firstName" [formControl]="form.get('firstName')" type="text" placeholder="first name" class="form-control" required/>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="lastName">Last Name</label>
-            <input id="lastName" [formControl]="form.get('lastName')" type="text" placeholder="last name" class="form-control" required />
-          </div>
-          </div>
-          <div class="row">
-          <div class="form-group col-md-3">
-            <label for="dateOfBirth">Date of birth</label>
-            <input id="dateOfBirth" [formControl]="form.get('dateOfBirth')" type="date" placeholder="date of birth" class="form-control" required />
-          </div>
-          <div class="form-group col-md-3">
-            <label for="experience">Experience</label>
-            <input id="experience" [formControl]="form.get('experience')" type="number" placeholder="experience" class="form-control" required />
-          </div>
+      <div class="form-group col-md-3 offset-md-3">
+        <label for="firstName">First Name:</label>
+        <input id="firstName" [formControl]="form.get('firstName')" type="text" placeholder="first name" class="form-control" required/>
+        <div class="error" *ngIf="form.get('firstName').errors && form.get('firstName').dirty">
+          First name Required, Max Length 50
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" [formControl]="form.get('lastName')" type="text" placeholder="last name" class="form-control" required
+        />
+        <div class="error" *ngIf="form.get('lastName').errors && form.get('lastName').dirty">
+          Last name Required, Max Length 50
+        </div>
+      </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-3 list">
-        <label>Stewardesses:</label>
+      <div class="form-group col-md-3 offset-md-3">
+        <label for="dateOfBirth">Date of birth:</label>
+        <input id="dateOfBirth" [formControl]="form.get('dateOfBirth')" type="date" placeholder="date of birth" class="form-control"
+          required />
+          <div class="error" *ngIf="form.get('dateOfBirth').errors && form.get('dateOfBirth').dirty">
+            Date Required
+          </div>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="experience">Experience:</label>
+        <input id="experience" [formControl]="form.get('experience')" type="number" placeholder="experience" class="form-control"
+          required />
+          <div class="error" *ngIf="form.get('experience').errors && form.get('experience').dirty">
+            Experience Required
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 offset-md-3">
+        <h5>Stewardesses:</h5>
+      </div>
+      <div class="col-md-3">
+        <h5>Available Stewardesses:</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3 offset-md-3 list">
+
         <ul>
           <li *ngFor="let stew of crew.stewardesses; index as i; trackBy: trackByFn">
             <button class="btn">{{stew.firstName}} {{stew.lastName}}</button>
@@ -46,7 +71,6 @@
         </ul>
       </div>
       <div class="form-group col-md-3 list">
-        <label>Available Stewardesses:</label>
         <ul>
           <li *ngFor="let stew of stewardesses; index as i; trackBy: trackByFn">
             <button class="btn btn-secondary" (click)="addStew(stew)">{{stew.firstName}} {{stew.lastName}}</button>
@@ -55,7 +79,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6 offset-md-3">
         <div class="btn-box">
           <button *ngIf="crew.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
           <button *ngIf="!crew.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>

@@ -1,11 +1,19 @@
 .btn-primary {
     margin-right: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .btn-secondary {
     margin-left: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .btn-default {
     margin-left: 5px;
+}
+
+table a {
+    color: black;
 }

@@ -2,3 +2,23 @@
     height: 200px;
     overflow-y: scroll;
 }
+
+.list button {
+    width: 100%;
+}
+
+.btn {
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.btn-primary,
+.btn-danger {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+}
