@@ -1,65 +1,8 @@
-<!-- <div class="container">
-  <h5>Pilot Information</h5>
-  <hr>
-  <div class="form-group">
-    <label>Id</label>
-    <div class="form-control">
-      {{pilot.id}}
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Firstname</label>
-    <input class="form-control" name="firstName" [(ngModel)]="pilot.firstName" />
-  </div>
-  <div class="form-group">
-    <label>Lastname</label>
-    <input class="form-control" name="lastName" [(ngModel)]="pilot.lastName" />
-  </div>
-  <div class="form-group">
-    <label>Birthdate</label>
-    <input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="pilot.dateOfBirth" />
-  </div>
-  <div class="form-group">
-    <label>Experience</label>
-    <input type="number" class="form-control" name="experience" [(ngModel)]="pilot.experience" />
-  </div>
-
-  <div class="btn-box">
-    <button class="btn btn-primary" (click)="update(pilot.id)">Update</button>
-    <button class="btn btn-danger" (click)="delete(pilot.id)">Delete</button>
-  </div>
-  <button class="btn btn-primary" (click)="goBack()">go back</button>
-</div> -->
-
-<div *ngIf="pilot">
-
-  <h2>{{pilot.firstName | uppercase}} Details</h2>
-  <div>
-    <span>id: </span>{{pilot.id}}</div>
-  <div>
-    <label>
-      first name:
-      <input [(ngModel)]="pilot.firstName" placeholder="first name">
-    </label>
-    <label>
-      last name:
-      <input [(ngModel)]="pilot.lastName" placeholder="last name">
-    </label>
-    <label>
-      birth date:
-      <input [(ngModel)]="pilot.dateOfBirth" placeholder="birth date">
-    </label>
-    <label>
-      experience:
-      <input [(ngModel)]="pilot.experience" placeholder="experience">
-    </label>
-  </div>
-  <button (click)="save()">save</button>
-  <button (click)="delete()">delete</button>
-  <button (click)="goBack()">go back</button>
-</div>
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group col-md-6">
+    <h2 *ngIf="pilot.id" class="text-center">{{pilot.firstName | uppercase}} Details</h2>
+    <h2 *ngIf="!pilot.id">New Pilot</h2>
+  </div>
   <div class="form-group col-md-6">
     <label for="id">Id</label>
     <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
@@ -80,9 +23,8 @@
     <label for="firstName">Experience</label>
     <input [formControl]="form.get('experience')" type="number" placeholder="experience" class="form-control" required />
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
-
-  <p>
-      Form Status: {{ form.status }}
-    </p>
+  <div class="form-group col-md-6">
+    <button *ngIf="pilot.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
+    <button *ngIf="!pilot.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+  </div>
 </form>

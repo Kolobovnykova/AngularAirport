@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PilotService } from '../../services/pilot.service';
 import { ReactiveFormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common'
 
 
 @Component({
@@ -36,8 +37,9 @@ export class PilotDetailComponent implements OnInit {
     }
     this.id = +this.route.snapshot.paramMap.get('id');
 
+
     if (this.id) {
-     // debugger;
+      //debugger;
       // this.getById();
       // this.groupConfig = {
       //   id: this.pilot.id,
@@ -47,16 +49,23 @@ export class PilotDetailComponent implements OnInit {
       //   experience: [this.pilot.experience, Validators.maxLength(50)]
       // }
       this.pilotService.getById(this.id)
-      .subscribe((pilot) => {
-        this.pilot = pilot;
-        this.groupConfig = {
-          id: pilot.id,
-          firstName: [this.pilot.firstName, Validators.maxLength(50)],
-          lastName: [this.pilot.lastName, Validators.maxLength(50)],
-          dateOfBirth: this.pilot.dateOfBirth,
-          experience: [this.pilot.experience, Validators.max(50)]
-        };
-      });
+        .subscribe((pilot) => {
+          this.pilot = pilot;
+          let dp = new DatePipe("en-US");
+          let p = 'y-MM-dd';
+          let dtr = dp.transform(pilot.dateOfBirth, p);
+          this.groupConfig = {
+            id: pilot.id,
+            firstName: [this.pilot.firstName, Validators.maxLength(50)],
+            lastName: [this.pilot.lastName, Validators.maxLength(50)],
+            dateOfBirth: dtr,
+            experience: [this.pilot.experience, Validators.max(50)]
+          };
+          console.log(pilot);
+          this.form = this.formbuilder.group(this.groupConfig);
+
+        });
+      console.log(this.pilot);
     } else {
       this.pilot = {
         id: 0,
@@ -65,6 +74,7 @@ export class PilotDetailComponent implements OnInit {
         dateOfBirth: undefined,
         experience: 0
       }
+      this.form = this.formbuilder.group(this.groupConfig);
     }
 
     this.form = this.formbuilder.group(this.groupConfig);
@@ -106,5 +116,15 @@ export class PilotDetailComponent implements OnInit {
   delete() {
     this.pilotService.delete(this.id)
       .subscribe(() => this.goBack());
+  }
+
+  onSubmit() {
+    const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
+    if (this.id) {
+      this.pilotService.update(this.id, this.form.value).subscribe();
+    }
+    else {
+      this.pilotService.create(this.form.value).subscribe();
+    }
   }
 }

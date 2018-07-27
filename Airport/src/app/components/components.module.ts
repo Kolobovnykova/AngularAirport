@@ -19,9 +19,11 @@ import { PlaneListComponent } from './plane-list/plane-list.component';
 import { PlaneDetailComponent } from './plane-detail/plane-detail.component';
 import { PlanetypeListComponent } from './planetype-list/planetype-list.component';
 import { PlanetypeDetailComponent } from './planetype-detail/planetype-detail.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
+    NgbModule,
     CommonModule,
     RouterModule,
     FormsModule,

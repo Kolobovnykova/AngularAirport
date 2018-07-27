@@ -1,69 +1,37 @@
-<h2>Pilots</h2>
+<h2 class="text-center">Pilots</h2>
 <button class="btn btn-secondary" (click)="goBack()">go back</button>
-<button class="btn btn-primary" (click)="add()">add</button>
-<a href="/pilots/0">add</a>
-
-
-  <div [hidden]="submitted">
-  <h1>Hero Form</h1>
-  <form>
-    <div class="form-group">
-      <label for="firstName">First name</label>
-      <input type="text" class="form-control" id="firstName" required>
-    </div>
-
-    <div class="form-group">
-      <label for="lastName">Last name</label>
-      <input type="text" class="form-control" id="lastName" required>
-    </div>
-
-    <div class="form-group">
-      <label for="dateOfBirth">Date of birth</label>
-      <input type="date" class="form-control" id="dateOfBirth">
-    </div>
-
-    <div class="form-group">
-      <label for="experience">Experience</label>
-      <input type="number" class="form-control" id="experience" required>
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-
-  </form>
-</div>
-
-
-
+<a class="btn btn-primary" href="/pilots/0">add new</a>
 
 <table class="table table-striped">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Date of Birth</th>
-        <th scope="col">Experience</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pilot of pilots">
-        <th scope="row">{{pilot.id}}</th>
-        <td><a routerLink="/pilots/{{pilot.id}}">{{pilot.firstName}}</a></td>
-        <td><a routerLink="/pilots/{{pilot.id}}">{{pilot.lastName}}</a></td>
-        <td>{{pilot.dateOfBirth | date: shortDate }}</td>
-        <td>{{pilot.experience}}</td>
-        <td><button class="btn btn-default" (click)="delete(pilot)">
-          <span class="glyphicon glyphicon-trash"></span></button></td>
-      </tr>   
-    </tbody>
-  </table>
-
-<!-- 
-<ul>
-  <li *ngFor="let pilot of pilots">
-    
-      <a routerLink="/pilots/{{pilot.id}}"></a>
-    <button (click)="delete(pilot)">delete</button>
-  </li>
-</ul> -->
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Experience</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pilot of pilots">
+      <th scope="row">{{pilot.id}}</th>
+      <td>
+        <a routerLink="/pilots/{{pilot.id}}">{{pilot.firstName}}</a>
+      </td>
+      <td>
+        <a routerLink="/pilots/{{pilot.id}}">{{pilot.lastName}}</a>
+      </td>
+      <td>{{pilot.dateOfBirth | date: shortDate }}</td>
+      <td>{{pilot.experience}}</td>
+      <td>
+        <button class="btn btn-default" routerLink="/pilots/{{pilot.id}}">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-default" (click)="delete(pilot)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
