@@ -1,3 +1,47 @@
-<p>
-  departure-detail works!
-</p>
+<div *ngIf="departure">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group col-md-6 offset-md-3">
+      <h2 *ngIf="departure.id" class="text-center">{{departure.firstName | uppercase}} Details</h2>
+      <h2 *ngIf="!departure.id" class="text-center">New Departure</h2>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="id">Id:</label>
+      <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="flightId">Flight Id:</label>
+      <input id="flightId" [formControl]="form.get('flightId')" type="text" placeholder="flight id" class="form-control" required/>
+      <div class="error" *ngIf="form.get('flightId').errors && form.get('flightId').dirty">
+        Flight Id Required
+      </div>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="crewId">Crew Id:</label>
+      <input id="crewId" [formControl]="form.get('crewId')" type="text" placeholder="crew id" class="form-control" required />
+      <div class="error" *ngIf="form.get('crewId').errors && form.get('crewId').dirty">
+        Crew Id Required
+      </div>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="dateOfDeparture">Date of Departure:</label>
+      <input id="dateOfDeparture" [formControl]="form.get('dateOfDeparture')" type="date" placeholder="date of birth" class="form-control" required />
+      <div class="error" *ngIf="form.get('dateOfDeparture').errors && form.get('dateOfDeparture').dirty">
+        Date Required
+      </div>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="planeId">Plane Id:</label>
+      <input id="planeId" [formControl]="form.get('planeId')" type="number" placeholder="planeId" class="form-control" required />
+      <div class="error" *ngIf="form.get('planeId').errors && form.get('planeId').dirty">
+        Plane Id Required
+      </div>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <button *ngIf="departure.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
+      <button *ngIf="!departure.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
+      <button *ngIf="departure.id" class="btn btn-danger" (click)="delete(departure)">Delete</button>
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+    </div>
+  </form>
+</div>

@@ -27,14 +27,14 @@
       <label for="dateOfBirth">Date of birth:</label>
       <input id="dateOfBirth" [formControl]="form.get('dateOfBirth')" type="date" placeholder="date of birth" class="form-control" required />
       <div class="error" *ngIf="form.get('dateOfBirth').errors && form.get('dateOfBirth').dirty">
-        Date required
+        Date Required
       </div>
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label for="experience">Experience:</label>
       <input id="experience" [formControl]="form.get('experience')" type="number" placeholder="experience" class="form-control" required />
       <div class="error" *ngIf="form.get('experience').errors && form.get('experience').dirty">
-        Experience required
+        Experience Required
       </div>
     </div>
     <div class="form-group col-md-6 offset-md-3">

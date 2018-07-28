@@ -18,14 +18,14 @@
     <tr *ngFor="let departure of departures">
       <th scope="row">{{departure.id}}</th>
       <td>
-        <a routerLink="/flights/{{departure.flightId}}">{{departure.flight.id}}</a>
+        <a routerLink="/flights/{{departure.flight.id}}">{{departure.flight.id}}</a>
       </td>
       <td>
-        <a routerLink="/crews/{{departure.crewId}}">{{departure.crew.id}}</a>
+        <a routerLink="/crews/{{departure.crew.id}}">{{departure.crew.id}}</a>
       </td>
       <td>{{departure.dateOfDeparture | date: shortDate }}</td>
       <td>
-        <a routerLink="/planes/{{departure.planeId}}">{{departure.plane.id}}</a>
+        <a routerLink="/planes/{{departure.plane.id}}">{{departure.plane.id}}</a>
       </td>
       <td>
         <button class="btn btn-default" routerLink="/departures/{{departure.id}}">
