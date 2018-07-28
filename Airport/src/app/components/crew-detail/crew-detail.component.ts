@@ -31,7 +31,6 @@ export class CrewDetailComponent implements OnInit {
     private formbuilder: FormBuilder
   ) { }
 
-  
   ngOnInit() {
     this.groupConfig = {
       id: 0,
@@ -91,7 +90,7 @@ export class CrewDetailComponent implements OnInit {
   onSubmit() {
     const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
     this.crew.pilot = pilot;
-    this.crew.stewardesses.forEach(function(item, i, arr) {
+    this.crew.stewardesses.forEach(function (item, i, arr) {
       item.id = 0;
     });
     this.crew.pilot.id = 0;

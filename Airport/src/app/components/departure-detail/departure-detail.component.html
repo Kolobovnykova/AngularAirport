@@ -40,8 +40,8 @@
     <div class="form-group col-md-6 offset-md-3">
       <button *ngIf="departure.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
       <button *ngIf="!departure.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
-      <button *ngIf="departure.id" class="btn btn-danger" (click)="delete(departure)">Delete</button>
-      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+      <button *ngIf="departure.id" type="button" class="btn btn-danger" (click)="delete(departure)">Delete</button>
+      <button class="btn btn-secondary" type="button" (click)="goBack()">Back</button>
     </div>
   </form>
 </div>
