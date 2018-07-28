@@ -113,4 +113,13 @@ export class CrewDetailComponent implements OnInit {
     stew.crewId = this.crew.id;
     this.crew.stewardesses.push(stew);
   }
+
+  removeStew(stew: Stewardess) {
+    let position = this.crew.stewardesses.indexOf(stew);
+    if (~position) this.crew.stewardesses.splice(position, 1);
+
+    // temporary id for correct moving stew back to available ones on the view
+    stew.crewId = -1;
+    this.stewardesses.push(stew);
+  }
 }
