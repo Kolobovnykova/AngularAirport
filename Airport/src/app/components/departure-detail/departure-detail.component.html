@@ -11,14 +11,14 @@
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label for="flightId">Flight Id:</label>
-      <input id="flightId" [formControl]="form.get('flightId')" type="text" placeholder="flight id" class="form-control" required/>
+      <input id="flightId" [formControl]="form.get('flightId')" type="number" placeholder="flight id" class="form-control" required/>
       <div class="error" *ngIf="form.get('flightId').errors && form.get('flightId').dirty">
         Flight Id Required
       </div>
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label for="crewId">Crew Id:</label>
-      <input id="crewId" [formControl]="form.get('crewId')" type="text" placeholder="crew id" class="form-control" required />
+      <input id="crewId" [formControl]="form.get('crewId')" type="number" placeholder="crew id" class="form-control" required />
       <div class="error" *ngIf="form.get('crewId').errors && form.get('crewId').dirty">
         Crew Id Required
       </div>

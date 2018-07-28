@@ -1,3 +1,33 @@
-<p>
-  ticket-detail works!
-</p>
+<div *ngIf="ticket">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group col-md-6 offset-md-3">
+      <h2 *ngIf="ticket.id" class="text-center">Ticket Details</h2>
+      <h2 *ngIf="!ticket.id" class="text-center">New Ticket</h2>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="id">Id:</label>
+      <input id="id" [formControl]="form.get('id')" type="number" placeholder="id" class="form-control" required readonly />
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="flightId">Flight Id:</label>
+      <input id="flightId" [formControl]="form.get('flightId')" type="number" placeholder="first name" class="form-control" required/>
+      <div class="error" *ngIf="form.get('flightId').errors && form.get('flightId').dirty">
+        Flight Id Required
+      </div>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="price">Price:</label>
+      <input id="price" [formControl]="form.get('price')" type="number" placeholder="last name" class="form-control" required />
+      <div class="error" *ngIf="form.get('price').errors && form.get('price').dirty">
+        Price Required
+      </div>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <button *ngIf="ticket.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Update</button>
+      <button *ngIf="!ticket.id" type="submit" class="btn btn-primary" [disabled]="!form.valid">Create</button>
+      <button *ngIf="ticket.id" class="btn btn-danger" (click)="delete(ticket)">Delete</button>
+      <button class="btn btn-secondary" (click)="goBack()">Back</button>
+    </div>
+  </form>
+</div>
