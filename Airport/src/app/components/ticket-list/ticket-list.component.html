@@ -19,7 +19,7 @@
         <a routerLink="/flights/{{ticket.flightId}}">{{ticket.flightId}}</a>
       </td>
       <td>
-        <a routerLink="/tickets/{{ticket.id}}">{{ticket.price}}</a>
+        <a routerLink="/tickets/{{ticket.id}}">{{ticket.price | currency}}</a>
       </td>
       <td>
         <button class="btn btn-default" routerLink="/tickets/{{ticket.id}}">
