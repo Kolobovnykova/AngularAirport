@@ -128,12 +128,5 @@ export class DepartureDetailComponent implements OnInit {
         );
       }
     );
-
-    // if (this.id) {
-    //   this.departureService.update(this.id, this.departure).subscribe();
-    // }
-    // else {
-    //   this.departureService.create(this.departure).subscribe(() => this.goBack());
-    // }
   }
 }
