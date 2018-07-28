@@ -1,3 +1,40 @@
-<p>
-  flight-list works!
-</p>
+<h2 class="text-center">Flights</h2>
+<div class="row justify-content-between">
+  <button class="btn btn-secondary" (click)="goBack()">Back</button>
+  <a class="btn btn-primary" href="/flights/0">Add</a>
+</div>
+<table class="table table-striped table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Point of Departure</th>
+      <th scope="col">Date of Departure</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Date of Arrival</th>
+      <th scope="col">Tickets</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let flight of flights">
+      <th scope="row">{{flight.id}}</th>
+      <td>{{flight.pointOfDeparture}}</td>
+      <td>{{flight.dateOfDeparture | date: shortDate }}</td>
+      <td>{{flight.destination}}</td>
+      <td>{{flight.dateOfArrival | date: shortDate }}</td>
+      <td>
+        <ul *ngFor="let ticket of flight.tickets">
+          <a routerLink="/tickets/{{ticket.id}}"><li>{{ticket.id}}</li></a>
+        </ul>
+      </td>
+      <td>
+        <button class="btn btn-default" routerLink="/flights/{{flight.id}}">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-default" (click)="delete(flight)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

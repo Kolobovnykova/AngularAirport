@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Pilot } from '../../services/Models/pilot';
 import { Router } from '@angular/router';
 import { CrewService } from '../../services/crew.service';
 import { Crew } from '../../services/Models/crew';
@@ -32,7 +31,7 @@ export class CrewListComponent implements OnInit {
     const idToDelete = crew.id;
     this.crewService.delete(idToDelete)
       .subscribe((crewToDelete) => this.crews = this.crews.filter(
-        (pilot) => pilot.id !== idToDelete));
+        (crew) => crew.id !== idToDelete));
   }
 
   goBack(): void {
