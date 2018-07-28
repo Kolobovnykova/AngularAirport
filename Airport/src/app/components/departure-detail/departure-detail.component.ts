@@ -117,7 +117,7 @@ export class DepartureDetailComponent implements OnInit {
                 this.departure.plane = newPlane;
 
                 if (this.id) {
-                  this.departureService.update(this.id, this.departure).subscribe();
+                  this.departureService.update(this.id, this.departure).subscribe(() => this.goBack());
                 }
                 else {
                   this.departureService.create(this.departure).subscribe(() => this.goBack());

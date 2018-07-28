@@ -73,7 +73,7 @@ export class TicketDetailComponent implements OnInit {
   onSubmit() {
     const ticket = { ...this.form.value};
     if (this.id) {
-      this.ticketService.update(this.id, ticket).subscribe();
+      this.ticketService.update(this.id, ticket).subscribe(() => this.goBack());
     }
     else {
       this.ticketService.create(ticket).subscribe(() => this.goBack());

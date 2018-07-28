@@ -96,7 +96,7 @@ export class CrewDetailComponent implements OnInit {
     this.crew.pilot.id = 0;
 
     if (this.id) {
-      this.crewService.update(this.id, this.crew).subscribe();
+      this.crewService.update(this.id, this.crew).subscribe(() => this.goBack());
     }
     else {
       this.crewService.create(this.crew).subscribe(() => this.goBack());

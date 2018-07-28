@@ -82,7 +82,7 @@ export class StewardessDetailComponent implements OnInit {
   onSubmit() {
     const stewardess = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
     if (this.id) {
-      this.stewardessService.update(this.id, stewardess).subscribe();
+      this.stewardessService.update(this.id, stewardess).subscribe(() => this.goBack());
     }
     else {
       this.stewardessService.create(stewardess).subscribe(() => this.goBack());

@@ -82,7 +82,7 @@ export class PilotDetailComponent implements OnInit {
   onSubmit() {
     const pilot = { ...this.form.value, dateOfBirth: new Date(this.form.get('dateOfBirth').value) };
     if (this.id) {
-      this.pilotService.update(this.id, pilot).subscribe();
+      this.pilotService.update(this.id, pilot).subscribe(() => this.goBack());
     }
     else {
       this.pilotService.create(pilot).subscribe(() => this.goBack());
