@@ -1,3 +1,38 @@
-<p>
-  planetype-list works!
-</p>
+<h2 class="text-center">Plane Types</h2>
+<div class="row justify-content-between">
+  <button class="btn btn-secondary" (click)="goBack()">Back</button>
+  <a class="btn btn-primary" href="/planetypes/0">Add</a>
+</div>
+<table class="table table-striped table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Model</th>
+      <th scope="col">Number of Seats</th>
+      <th scope="col">Carrying capacity</th>
+      <th scope="col">Max range</th>
+      <th scope="col">Max speed</th>
+      <th scope="col">Max altitude</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let planetype of planetypes">
+      <th scope="row">{{planetype.id}}</th>
+      <td>{{planetype.model}}</td>
+      <td>{{planetype.numberOfSeats }}</td>
+      <td>{{planetype.carryingCapacity}}</td>
+      <td>{{planetype.maxRange}}</td>
+      <td>{{planetype.maxSpeed}}</td>
+      <td>{{planetype.maxAltitude}}</td>
+      <td>
+        <button class="btn btn-default" routerLink="/planetypes/{{planetype.id}}">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-default" (click)="delete(planetype)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
