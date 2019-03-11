@@ -3,9 +3,9 @@ Angular application for work with [AirportApi](https://github.com/Kolobovnykova/
 
 * ``` git clone https://github.com/Kolobovnykova/AirportApi ```
 * ``` dotnet restore ```
-* ``` dotnet ef database update ```
+* ``` cd AirportApi ```
 * ``` dotnet run ```
-* ``` Set the appropriate port in app/services/constants.ts ```
+* ``` set the appropriate port in app/services/constants.ts to match with Api project ```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
