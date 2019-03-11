@@ -1,6 +1,11 @@
 # AngularAirport
 Angular application for work with [AirportApi](https://github.com/Kolobovnykova/AirportApi)
-Set the appropriate port in app/services/constants.ts
+
+* ``` git clone https://github.com/Kolobovnykova/AirportApi ```
+* ``` dotnet restore ```
+* ``` dotnet ef database update ```
+* ``` dotnet run ```
+* ``` Set the appropriate port in app/services/constants.ts ```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
@@ -16,5 +21,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Further help
 
-
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
